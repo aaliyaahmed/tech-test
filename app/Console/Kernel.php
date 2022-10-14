@@ -16,6 +16,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $controller = new \App\Http\Controllers\B2BController();
+            $controller->listNbnApplications();
+        })->everyFiveMinutes();
+
     }
 
     /**
